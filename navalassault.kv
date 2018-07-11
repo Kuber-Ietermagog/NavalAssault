@@ -1,0 +1,1155 @@
+<rootScreen>:
+	BoxLayout:
+		orientation: 'vertical'
+		canvas.before:
+			Color:
+				rgb: (0, 0, 0)
+			Rectangle:
+				size: self.size
+				pos: self.pos
+		BoxLayout:
+			size_hint_y: None
+			height: '40dp'
+			padding: 5
+			Button:
+				id: selectShip
+				text: 'Select Ship'
+				font_name: 'digital-7.regular.ttf'
+				color: (0,1,0,1)
+				font_size: '18dp'
+				background_normal: 'btnMenuNormal.png'
+				background_down: 'btnRadarFire.png'
+			BoxLayout:
+				Label:
+					id: currentRank
+					text: 'Rank:'
+					color: (0,1,0,1)
+					font_name: 'digital-7.regular.ttf'
+					font_size: '25dp'
+				Image:
+					id: rankIcon
+					source: 'seaman.png'
+					allow_stretch: True
+			BoxLayout:
+				Button:
+					id: mainMenu
+					text: 'Main Menu'
+					on_press: root.toMenu()
+					color: (0,1,0,1)
+					font_name: 'digital-7.regular.ttf'
+					font_size: '18dp'
+					background_normal: 'btnMenuNormal.png'
+					background_down: 'btnRadarFire.png'
+				Button:
+					id: helpMenu
+					text: 'Help'
+					on_press: root.gotoHelp()
+					color: (0,1,0,1)
+					font_name: 'digital-7.regular.ttf'
+					font_size: '18dp'
+					background_normal: 'btnMenuNormal.png'
+					background_down: 'btnRadarFire.png'
+		BoxLayout:		
+			FloatLayout:
+				id: shipScreen
+				canvas.before:
+					Rectangle:
+						size: self.size
+						pos: self.pos
+						source: 'Ocean.jpg'			
+
+			FloatLayout:
+				id: radarScreen
+						
+		BoxLayout:
+			size_hint_y: None
+			height: "40dp"
+			Label:
+				id: chgMultiPlayer1
+				text: 'Computer:'
+				size_hint_x: .15
+				color: (0,1,0,1)
+				font_name: 'digital-7.regular.ttf'
+				font_size: '20dp'
+			Label:
+				id: cpuInfo
+				size_hint_x: .35
+				text: 'wait'
+				color: (0,1,0,1)
+				font_name: 'digital-7.regular.ttf'
+				font_size: '20dp'
+			Label:
+				id: chgMultiPlayer2
+				text: 'Player:'
+				size_hint_x: .15
+				color: (0,1,0,1)
+				font_name: 'digital-7.regular.ttf'
+				font_size: '20dp'
+			Label:
+				id: usrInfo
+				size_hint_x: .35
+				text: ''
+				color: (0,1,0,1)
+				font_name: 'digital-7.regular.ttf'
+				font_size: '20dp'
+
+<LoseGameDialog>:
+	BoxLayout:
+		canvas.before:
+			Color:
+				rgb: (1,0,0)
+			Rectangle:
+				size: self.size
+				pos: self.pos
+				source: 'sinkingShip.jpg'
+		BoxLayout:
+			id: loseBox
+			orientation: 'vertical'
+			size: self.size
+			pos: self.pos
+			BoxLayout:
+				orientation: 'vertical'
+				BoxLayout:
+					orientation: 'horizontal'
+					size_hint_y: None
+					height: '60dp'
+					Label:
+						text: 'Rank'
+					Label:
+						text: 'Wins'
+					Label:
+						text: 'Losses'
+					Label:
+						text: 'Shots Taken\nLast Game'
+						halign: 'center'
+					Label:
+						text: 'Least Shots\nFor a Win'
+						halign: 'center'
+				BoxLayout:
+					orientation: 'horizontal'
+					size_hint_y: None
+					height: '30dp'
+					Image:
+						source: 'seaman.png'
+						allow_stretch: True
+					Label:
+						id: seamanWin
+						text: '0'
+					Label:
+						id: seamanLose
+						text: '0'
+					Label:
+						id: seamanShotsNow
+						text: '0'
+					Label:
+						id: seamanShotsLeast
+						text: '0'
+				BoxLayout:
+					orientation: 'horizontal'
+					size_hint_y: None
+					height: '30dp'
+					Image:
+						source: 'captain.png'
+						allow_stretch: True
+					Label:
+						id: captainWin
+						text: '0'
+					Label:
+						id: captainLose
+						text: '0'
+					Label:
+						id: captainShotsNow
+						text: '0'
+					Label:
+						id: captainShotsLeast
+						text: '0'
+				BoxLayout:
+					orientation: 'horizontal'
+					size_hint_y: None
+					height: '30dp'
+					Image:
+						source: 'admiral.png'
+						allow_stretch: True
+					Label:
+						id: admiralWin
+						text: '0'
+					Label:
+						id: admiralLose
+						text: '0'
+					Label:
+						id: admiralShotsNow
+						text: '0'
+					Label:
+						id: admiralShotsLeast
+						text: '0'
+				BoxLayout:
+					orientation: 'horizontal'
+					size_hint_y: None
+					height: '30dp'
+					Image:
+						source: 'multi.png'
+						allow_stretch: True
+					Label:
+						id: multiWin
+						text: '0'
+					Label:
+						id: multiLose
+						text: '0'
+					Label:
+						id: multiShotsNow
+						text: '0'
+					Label:
+						id: multiShotsLeast
+						text: '0'
+				BoxLayout:
+			Label:
+				size_hint_y: None
+				height: "40dp"
+				text: 'You have lost the game.'
+				font_name: 'digital-7.regular.ttf'
+				color: (1,1,1,1)
+				font_size: '40dp'
+			Button:
+				size_hint_y: None
+				height: "40dp"
+				text: 'New Game'
+				font_name: 'digital-7.regular.ttf'
+				color: (0,1,0,1)
+				font_size: '20dp'
+				background_normal: 'btnMenuNormal.png'
+				background_down: 'btnRadarFire.png'
+				on_press: root.startNew()
+
+<InfoDialog>:
+	canvas.before:
+		Color:
+			rgb: (1,1,1)
+		Rectangle:
+			size: self.size
+			pos: self.pos
+			source: 'Ocean.jpg'
+	BoxLayout:
+		Label:
+			text: 'Loading, please wait.'
+			font_name: 'digital-7.regular.ttf'
+			color: (0,1,0,1)
+			font_size: '40dp'
+
+<WinGameDialog>:
+	BoxLayout:
+		canvas.before:
+			Color:
+				rgb: (.5,.5,.5)
+			Rectangle:
+				size: self.size
+				pos: self.pos
+				source: 'nightVision.png'
+		BoxLayout:
+			id: winBox
+			orientation: 'vertical'
+			size: self.size
+			pos: self.pos
+			BoxLayout:
+				orientation: 'vertical'
+				BoxLayout:
+					orientation: 'horizontal'
+					size_hint_y: None
+					height: '60dp'
+					Label:
+						text: 'Rank'
+					Label:
+						text: 'Wins'
+					Label:
+						text: 'Losses'
+					Label:
+						text: 'Shots Taken\nLast Game'
+						halign: 'center'
+					Label:
+						text: 'Least Shots\nFor a Win'
+						halign: 'center'
+				BoxLayout:
+					orientation: 'horizontal'
+					size_hint_y: None
+					height: '30dp'
+					Image:
+						source: 'seaman.png'
+						allow_stretch: True
+					Label:
+						id: seamanWin
+						text: '0'
+					Label:
+						id: seamanLose
+						text: '0'
+					Label:
+						id: seamanShotsNow
+						text: '0'
+					Label:
+						id: seamanShotsLeast
+						text: '0'
+				BoxLayout:
+					orientation: 'horizontal'
+					size_hint_y: None
+					height: '30dp'
+					Image:
+						source: 'captain.png'
+						allow_stretch: True
+					Label:
+						id: captainWin
+						text: '0'
+					Label:
+						id: captainLose
+						text: '0'
+					Label:
+						id: captainShotsNow
+						text: '0'
+					Label:
+						id: captainShotsLeast
+						text: '0'
+				BoxLayout:
+					orientation: 'horizontal'
+					size_hint_y: None
+					height: '30dp'
+					Image:
+						source: 'admiral.png'
+						allow_stretch: True
+					Label:
+						id: admiralWin
+						text: '0'
+					Label:
+						id: admiralLose
+						text: '0'
+					Label:
+						id: admiralShotsNow
+						text: '0'
+					Label:
+						id: admiralShotsLeast
+						text: '0'
+				BoxLayout:
+					orientation: 'horizontal'
+					size_hint_y: None
+					height: '30dp'
+					Image:
+						source: 'multi.png'
+						allow_stretch: True
+					Label:
+						id: multiWin
+						text: '0'
+					Label:
+						id: multiLose
+						text: '0'
+					Label:
+						id: multiShotsNow
+						text: '0'
+					Label:
+						id: multiShotsLeast
+						text: '0'
+				BoxLayout:
+			Label:
+				size_hint_y: None
+				height: "40dp"
+				text: 'You have won the game.'
+				font_name: 'digital-7.regular.ttf'
+				color: (1,1,1,1)
+				font_size: '40dp'
+			Button:
+				size_hint_y: None
+				height: "40dp"
+				text: 'New Game'
+				font_name: 'digital-7.regular.ttf'
+				color: (0,1,0,1)
+				font_size: '20dp'
+				background_normal: 'btnMenuNormal.png'
+				background_down: 'btnRadarFire.png'
+				on_press: root.startNew()
+
+<SelectLevel>:
+	BoxLayout:
+		canvas.before:
+			Color:
+				rgb: (1,1,1)
+			Rectangle:
+				size: self.size
+				pos: self.pos
+				source: 'icon.png'
+		BoxLayout:
+			padding: 10
+			Label:
+				id: Version
+				size_hint_y: None
+				height: "40dp"
+				text: ''
+				font_name: 'digital-7.regular.ttf'
+				color: (0,1,0,1)
+				font_size: '40dp'
+
+			BoxLayout:
+				orientation: 'vertical'
+				BoxLayout:
+					size_hint_y: None
+					height: "40dp"
+					Image:
+						source: 'seaman.png'
+						size_hint_x: 0.3
+						allow_stretch: True
+					Button:
+						size_hint_x: 0.7						
+						text: 'Seaman - Easy'
+						font_name: 'digital-7.regular.ttf'
+						color: (0,1,0,1)
+						font_size: '25dp'
+						background_normal: 'btnMenuNormal.png'
+						background_down: 'btnRadarFire.png'
+						on_press: root.startSeaman()
+				BoxLayout:
+					size_hint_y: None
+					height: "40dp"
+					Image:
+						source: 'captain.png'
+						size_hint_x: 0.3
+						allow_stretch: True
+					Button:
+						size_hint_x: 0.7
+						text: 'Captain - Moderate'
+						font_name: 'digital-7.regular.ttf'
+						color: (0,1,0,1)
+						font_size: '25dp'
+						background_normal: 'btnMenuNormal.png'
+						background_down: 'btnRadarFire.png'
+						on_press: root.startCaptain()
+				BoxLayout:
+					size_hint_y: None
+					height: "40dp"
+					Image:
+						source: 'admiral.png'
+						size_hint_x: 0.3
+						allow_stretch: True
+					Button:
+						size_hint_x: 0.7
+						text: 'Admiral - Difficult'
+						font_name: 'digital-7.regular.ttf'
+						color: (0,1,0,1)
+						font_size: '25dp'
+						background_normal: 'btnMenuNormal.png'
+						background_down: 'btnRadarFire.png'
+						on_press: root.startAdmiral()
+				BoxLayout:
+					size_hint_y: None
+					height: "40dp"
+					Image:
+						source: 'multi.png'
+						size_hint_x: 0.3
+						allow_stretch: True
+					Button:
+						id: bM
+						size_hint_x: 0.7
+						text: 'Battle Match'
+						font_name: 'digital-7.regular.ttf'
+						color: (0,1,0,1)
+						font_size: '25dp'
+						background_normal: 'btnMenuNormal.png'
+						background_down: 'btnRadarFire.png'
+						on_press: root.startMulti()
+				Label:
+					background_down: 'btnRadarFire.png'
+
+<HelpScreen>:
+	BoxLayout:
+		canvas.before:
+			Color:
+				rgb: (1,1,1)
+			Rectangle:
+				size: self.size
+				pos: self.pos
+				source: 'Ocean.jpg'
+		BoxLayout:
+		BoxLayout:
+			orientation: 'vertical'
+			BoxLayout:
+			BoxLayout:
+			BoxLayout:
+				orientation: 'vertical'
+				Label:
+					size_hint_y: None
+					height: "40dp"
+					text: 'Battle Match Help Menu'
+					font_name: 'digital-7.regular.ttf'
+					color: (0,1,0,1)
+					font_size: '25dp'
+					background_normal: 'btnMenuNormal.png'
+					background_down: 'btnRadarFire.png'
+				Button:
+					size_hint_y: None
+					height: "40dp"
+					text: 'Ship Placement'
+					font_name: 'digital-7.regular.ttf'
+					color: (0,1,0,1)
+					font_size: '25dp'
+					background_normal: 'btnMenuNormal.png'
+					background_down: 'btnRadarFire.png'
+					on_press: root.showPlacement()
+				Button:
+					size_hint_y: None
+					height: "40dp"
+					text: 'Sonar Grid'
+					font_name: 'digital-7.regular.ttf'
+					color: (0,1,0,1)
+					font_size: '25dp'
+					background_normal: 'btnMenuNormal.png'
+					background_down: 'btnRadarFire.png'
+					on_press: root.showSonar()
+				Button:
+					size_hint_y: None
+					height: "40dp"
+					text: 'Battle Match'
+					font_name: 'digital-7.regular.ttf'
+					color: (0,1,0,1)
+					font_size: '25dp'
+					background_normal: 'btnMenuNormal.png'
+					background_down: 'btnRadarFire.png'
+					on_press: root.battleMatch()
+				Button:
+					size_hint_y: None
+					height: "40dp"
+					text: 'Credits'
+					font_name: 'digital-7.regular.ttf'
+					color: (0,1,0,1)
+					font_size: '25dp'
+					background_normal: 'btnMenuNormal.png'
+					background_down: 'btnRadarFire.png'
+					on_press: root.showCredits()
+				Button:
+					size_hint_y: None
+					height: "40dp"
+					text: 'Cancel'
+					font_name: 'digital-7.regular.ttf'
+					color: (0,1,0,1)
+					font_size: '25dp'
+					background_normal: 'btnMenuNormal.png'
+					background_down: 'btnRadarFire.png'
+					on_press: root.newGame()
+			BoxLayout:
+		BoxLayout:
+
+<CreditScreen>:
+	creditView: creditView
+	BoxLayout:
+		orientation: 'vertical'
+		BoxLayout:
+			padding: 10
+			Image:
+				source: 'ietermagog_logo.png'
+				allow_stretch: True
+			ScrollView:
+                pos: self.pos
+                size: self.size
+                bar_width: 5
+                GridLayout:
+                    id: creditView
+                    cols: 1
+                    size_hint_y: None
+                    row_default_height: "30dp"
+                    row_force_default: True
+					Label:
+						text: 'Programmer'
+						font_name: 'digital-7.regular.ttf'
+						color: (0,1,0,1)
+						font_size: '25dp'
+					Label:
+						text: 'Johan Swart'
+						font_name: 'digital-7.regular.ttf'
+						color: (0,1,0,1)
+						font_size: '18dp'	
+					Label:
+						text: 'Legal Advisor'
+						font_name: 'digital-7.regular.ttf'
+						color: (0,1,0,1)
+						font_size: '25dp'
+					Label:
+						text: 'Marili Theunissen'
+						font_name: 'digital-7.regular.ttf'
+						color: (0,1,0,1)
+						font_size: '18dp'
+					Label:
+						text: 'Lead Testers'
+						font_name: 'digital-7.regular.ttf'
+						color: (0,1,0,1)
+						font_size: '25dp'
+					Label:
+						text: 'Louise Swart'
+						font_name: 'digital-7.regular.ttf'
+						color: (0,1,0,1)
+						font_size: '18dp'	
+					Label:
+						text: 'Jean Helgard Swart'
+						font_name: 'digital-7.regular.ttf'
+						color: (0,1,0,1)
+						font_size: '18dp'
+					Label:
+						text: 'Rudi Hambrock'
+						font_name: 'digital-7.regular.ttf'
+						color: (0,1,0,1)
+						font_size: '18dp'
+						background_normal: 'btnRadarNormal.png'
+						background_down: 'btnRadarFire.png'	
+					Label:
+						text: 'Main Menu Concept'
+						font_name: 'digital-7.regular.ttf'
+						color: (0,1,0,1)
+						font_size: '25dp'
+					Label:
+						text: 'Johan Swart'
+						font_name: 'digital-7.regular.ttf'
+						color: (0,1,0,1)
+						font_size: '18dp'	
+					Label:
+						text: 'Placement Menu Concept'
+						font_name: 'digital-7.regular.ttf'
+						color: (0,1,0,1)
+						font_size: '25dp'
+						background_normal: 'btnRadarNormal.png'
+						background_down: 'btnRadarFire.png'
+					Label:
+						text: 'Rudi Hambrock'
+						font_name: 'digital-7.regular.ttf'
+						color: (0,1,0,1)
+						font_size: '18dp'
+					Label:
+						text: 'Lourens Keiser'
+						font_name: 'digital-7.regular.ttf'
+						color: (0,1,0,1)
+						font_size: '18dp'
+					Label:
+						text: 'Triumphal Sound Effect'
+						font_name: 'digital-7.regular.ttf'
+						color: (0,1,0,1)
+						font_size: '25dp'
+					Label:
+						text: 'John Stracke'
+						font_name: 'digital-7.regular.ttf'
+						color: (0,1,0,1)
+						font_size: '18dp'
+					Label:
+						text: 'Special Credit'
+						font_name: 'digital-7.regular.ttf'
+						color: (0,1,0,1)
+						font_size: '25dp'
+					Label:
+						text: 'To my wife and father for the motivation!'
+						font_name: 'digital-7.regular.ttf'
+						color: (0,1,0,1)
+						font_size: '18dp'
+		Button:
+			size_hint_y: None
+			height: "30dp"
+			text: 'Cancel'
+			font_name: 'digital-7.regular.ttf'
+			color: (0,1,0,1)
+			font_size: '25dp'
+			background_normal: 'btnMenuNormal.png'
+			background_down: 'btnRadarFire.png'
+			on_press: root.newGame()
+
+<PlacementHelp>:
+	placeView: placeView
+	BoxLayout:
+		orientation: 'vertical'
+		BoxLayout:
+			padding: 5
+			BoxLayout:
+				orientation: 'vertical'
+				Image:
+					id: helpFigure
+					source: 'placeHelp1.png'
+					allow_stretch: True
+			BoxLayout:
+				padding: 5			
+				ScrollView:
+	                pos: self.pos
+	                size: self.size
+	                bar_width: 5
+	                GridLayout:
+	                    id: placeView
+	                    cols: 1
+	                    size_hint_y: None
+	                    row_default_height: "100dp"
+	                    row_force_default: True
+	                    BoxLayout:
+	                    	orientation: 'vertical'
+		                    Label:
+		                    	font_size: "25dp"
+		                		text: 'Figure 1:'
+								font_name: 'digital-7.regular.ttf'
+								color: (0,1,0,1)
+							Label:
+		                		text_size: self.size
+		                		halign: 'left'
+		                		valign: 'center'
+		                		text: 'Figure 1 shows the placement menu, here the player can see the ships that is available for placement.'
+								font_name: 'digital-7.regular.ttf'
+								color: (0,1,0,1)
+						BoxLayout:
+							orientation: 'vertical'
+							Label:
+								text_size: self.size
+		                		halign: 'left'
+		                		valign: 'center'
+		                		text: 'In the block labeled A, an Icon of the ship appears on the left. Under the ship is the ship name and in brackets how many blocks on the ship occupies.'
+								font_name: 'digital-7.regular.ttf'
+								color: (0,1,0,1)
+							Label:
+								text_size: self.size
+		                		halign: 'left'
+		                		valign: 'center'
+		                		text: 'On the right is two buttons labeled vertical(on top) and horizontal(on bottom), these buttons will select the orientation of the ship on the grid.'
+								font_name: 'digital-7.regular.ttf'
+								color: (0,1,0,1)
+						BoxLayout:
+							orientation: 'vertical'
+							Label:
+								text_size: self.size
+		                		halign: 'left'
+		                		valign: 'center'
+		                		text: 'On tapping on one of the buttons the text in ellipse labeled B, will display the ship name, size and orientation for placement.'
+								font_name: 'digital-7.regular.ttf'
+								color: (0,1,0,1)
+							Label:
+		                    	font_size: "25dp"
+		                		text: 'Figure 2:'
+								font_name: 'digital-7.regular.ttf'
+								color: (0,1,0,1)
+						BoxLayout:
+							orientation: 'vertical'
+							Label:
+								text_size: self.size
+		                		halign: 'left'
+		                		valign: 'center'
+		                		text: 'Tap >> button to display figure 2. In figure 2 there are five ships placed on the grid. The Patrolboat(A) is placed with a vertical orientation and the Destroyer(B) horizontally.'
+								font_name: 'digital-7.regular.ttf'
+								color: (0,1,0,1)
+							Label:
+								text_size: self.size
+		                		halign: 'left'
+		                		valign: 'center'
+		                		text: 'The Patrolboat(A) origin is on the bottom, meaning that the ship cannot be placed higher than row (B) on the grid. Else the player info area under the sonar will prompt to move the ship down.'
+								font_name: 'digital-7.regular.ttf'
+								color: (0,1,0,1)
+						BoxLayout:
+							orientation: 'vertical'
+							Label:
+								text_size: self.size
+		                		halign: 'left'
+		                		valign: 'center'
+		                		text: 'The Destroyer(B) origin is on the left, meaning that the ship cannot be placed more right than column (8) on the grid. Else the player info area will prompt to move the ship left.'
+								font_name: 'digital-7.regular.ttf'
+								color: (0,1,0,1)
+							Label:
+								text_size: self.size
+		                		halign: 'left'
+		                		valign: 'center'
+		                		text: 'The ellipse labeled C will display the ship name, size and orientation.'
+								font_name: 'digital-7.regular.ttf'
+								color: (0,1,0,1)
+						BoxLayout:
+							orientation: 'vertical'
+							Label:
+								font_size: "25dp"
+		                		text: 'Figure 3:'
+								font_name: 'digital-7.regular.ttf'
+								color: (0,1,0,1)
+							Label:
+								text_size: self.size
+		                		halign: 'left'
+		                		valign: 'center'
+		                		text: 'Tap >> to display figure 3. In figure 3 is a screen shot of a game being played. On the grid is the players ships and the shots that the computer took. The legend is as follows:'
+								font_name: 'digital-7.regular.ttf'
+								color: (0,1,0,1)
+						BoxLayout:
+							orientation: 'vertical'
+							BoxLayout:
+		                    	Image:
+		                    		source: 'splash.png'
+		                    		size_hint_x: 0.1
+		                    	Label:
+		                    		size_hint_x: 0.9
+		                    		text_size: self.size
+		                    		halign: 'left'
+		                    		valign: 'center'
+		                    		text: '- Miss'
+									font_name: 'digital-7.regular.ttf'
+									color: (0,1,0,1)
+							BoxLayout:
+		                    	Image:
+		                    		source: 'bang_1.png'
+		                    		size_hint_x: 0.1
+		                    	Label:
+		                    		size_hint_x: 0.9
+		                    		text_size: self.size
+		                    		halign: 'left'
+		                    		valign: 'center'
+		                    		text: '- Hit'
+									font_name: 'digital-7.regular.ttf'
+									color: (0,1,0,1)
+							BoxLayout:
+						BoxLayout:
+							orientation: 'vertical'
+							Label:
+								text_size: self.size
+		                		halign: 'left'
+		                		valign: 'center'
+		                		text: 'On the bottom of figure 3 is the computer information area, here the computer will report any hits, misses and status information.'
+								font_name: 'digital-7.regular.ttf'
+								color: (0,1,0,1)
+							Label:
+								text_size: self.size
+		                		halign: 'left'
+		                		valign: 'center'
+		                		text: '---END OF HELP, ENJOY THE GAME!---'
+								font_name: 'digital-7.regular.ttf'
+								color: (0,1,0,1)
+		BoxLayout:
+			size_hint_y: None
+			height: "30dp"
+			Button:
+				text: '<<'
+				font_name: 'digital-7.regular.ttf'
+				color: (0,1,0,1)
+				font_size: '18dp'
+				background_normal: 'btnMenuNormal.png'
+				background_down: 'btnRadarFire.png'
+				on_press: root.lastFigure()
+	        Button:
+				size_hint_y: None
+				height: "30dp"
+				text: 'Cancel'
+				font_name: 'digital-7.regular.ttf'
+				color: (0,1,0,1)
+				font_size: '25dp'
+				background_normal: 'btnMenuNormal.png'
+				background_down: 'btnRadarFire.png'
+				on_press: root.newGame()
+			Button:
+				text: '>>'
+				font_name: 'digital-7.regular.ttf'
+				color: (0,1,0,1)
+				font_size: '18dp'
+				background_normal: 'btnMenuNormal.png'
+				background_down: 'btnRadarFire.png'
+				on_press: root.nextFigure()
+
+<SonarGridHelp>:
+	helpView: helpView
+	BoxLayout:
+		orientation: 'vertical'
+		BoxLayout:
+			padding: 10
+			Image:
+				source: 'fireGridHelp.png'
+				allow_stretch: True
+			ScrollView:
+                pos: self.pos
+                size: self.size
+                bar_width: 5
+                GridLayout:
+                    id: helpView
+                    cols: 1
+                    size_hint_y: None
+                    row_default_height: "60dp"
+                    row_force_default: True
+                    Label:
+                		text_size: self.size
+                		halign: 'left'
+                		valign: 'center'
+                		text: 'The sonar grid is based on the classical board game. When the player tap on the grid, a pin is placed. A green pin for a miss and red for a hit. The red pins are also marked with a legend, and is as follows:'
+						font_name: 'digital-7.regular.ttf'
+						color: (0,1,0,1)
+					BoxLayout:
+						orientation: 'vertical'
+	                    BoxLayout:
+	                    	Image:
+	                    		source: 'carrier_hit.png'
+	                    		size_hint_x: 0.1
+	                    	Label:
+	                    		size_hint_x: 0.9
+	                    		text_size: self.size
+	                    		halign: 'left'
+	                    		valign: 'center'
+	                    		text: '- Carrier'
+								font_name: 'digital-7.regular.ttf'
+								color: (0,1,0,1)
+						BoxLayout:
+	                    	Image:
+	                    		source: 'battleship_hit.png'
+	                    		size_hint_x: 0.1
+	                    	Label:
+	                    		size_hint_x: 0.9
+	                    		text_size: self.size
+	                    		halign: 'left'
+	                    		valign: 'center'
+	                    		text: '- Battleship'
+								font_name: 'digital-7.regular.ttf'
+								color: (0,1,0,1)
+					BoxLayout:
+						orientation: 'vertical'
+						BoxLayout:
+	                    	Image:
+	                    		source: 'submarine_hit.png'
+	                    		size_hint_x: 0.1
+	                    	Label:
+	                    		size_hint_x: 0.9
+	                    		text_size: self.size
+	                    		halign: 'left'
+	                    		valign: 'center'
+	                    		text: '- Submarine'
+								font_name: 'digital-7.regular.ttf'
+								color: (0,1,0,1)
+						BoxLayout:
+	                    	Image:
+	                    		source: 'destroyer_hit.png'
+	                    		size_hint_x: 0.1
+	                    	Label:
+	                    		size_hint_x: 0.9
+	                    		text_size: self.size
+	                    		halign: 'left'
+	                    		valign: 'center'
+	                    		text: '- Destroyer'
+								font_name: 'digital-7.regular.ttf'
+								color: (0,1,0,1)
+					BoxLayout:
+						orientation: 'vertical'
+						BoxLayout:
+	                    	Image:
+	                    		source: 'patrolboat_hit.png'
+	                    		size_hint_x: 0.1
+	                    	Label:
+	                    		size_hint_x: 0.9
+	                    		text_size: self.size
+	                    		halign: 'left'
+	                    		valign: 'center'
+	                    		text: '- Patrolboat'
+								font_name: 'digital-7.regular.ttf'
+								color: (0,1,0,1)
+						BoxLayout:
+							Label:
+	                    		size_hint_x: 0.9
+	                    		text_size: self.size
+	                    		halign: 'left'
+	                    		valign: 'center'
+	                    		text: 'A hit is also accompanied by a ping sound form the sonar.'
+								font_name: 'digital-7.regular.ttf'
+								color: (0,1,0,1)
+					Label:
+                		text_size: self.size
+                		halign: 'left'
+                		valign: 'center'
+                		text: 'Under the sonar grid useful information is displayed. It will inform the player about, hits and misses and when the player tries to place ship out of bounds on the placement grid.'
+						font_name: 'digital-7.regular.ttf'
+						color: (0,1,0,1)
+        Button:
+			size_hint_y: None
+			height: "30dp"
+			text: 'Cancel'
+			font_name: 'digital-7.regular.ttf'
+			color: (0,1,0,1)
+			font_size: '25dp'
+			background_normal: 'btnMenuNormal.png'
+			background_down: 'btnRadarFire.png'
+			on_press: root.newGame()
+
+<BattleMatchHelp>:
+	BoxLayout:
+		orientation: 'vertical'
+		BoxLayout:
+			orientation: 'vertical'
+			padding: 10
+			# Image:
+			# 	source: 'fireGridHelp.png'
+			# 	allow_stretch: True
+			BoxLayout:
+				size_hint_y: None
+				height: "40dp"
+				Label:
+				Image:
+					source: 'multi.png'
+				Label:
+					text: 'Battle Match Help'
+					font_name: 'digital-7.regular.ttf'
+					color: (0,1,0,1)
+					font_size: '25dp'
+				Label:
+			ScrollView:
+                pos: self.pos
+                size: self.size
+                bar_width: 5
+                Label:
+                	size_hint_y: None
+				    text_size: self.width, None
+				    height: self.texture_size[1]
+            		halign: 'left'
+            		valign: 'center'
+            		text: 'The Battle match LAN game can be played by enabling the wifi function or by means of a mobile hot-spot on your device. \n\nBattle match through a wifi network:\n\nConnect your device to your wifi network. Start Naval Assault, Select > Battle Match. \n\nTo Host a game select the host game option on the top left. The button below display “Create game”. Tap on the button, the game will tell you that it is creating the host service and connect automatically to the service, your devices’ IP Address should be displayed under the service notification.\nYour opponent must select the join game option on the top right. The button below will change to “Join Game”. The opponent must now tap on the button to connect to the host.\n\nIf a connection error occurs it will be reported above the cancel button.\n\nThe battle match game will automatically start when both players are connected to the service. The players may now place there ships on the ship grid on the left. After both players have placed there ships, a player will be randomly selected to start, there will be a prompt on the bottom left from the opponent telling the player who’s turn it is.\n\nBattle Match through a mobile hot-spot:\n\nThe player wanting to host a game must enable the devices’ mobile hot-spot in the settings menu on the device. The mobile hot-spot essentially creates a wifi network to use for the game. Start Naval Assault, Select > Battle Match.\n\nFollow the instructions for battle match through a wifi network to play the game.\n\n---End of Help, enjoy Battle Match---'
+					font_name: 'digital-7.regular.ttf'
+					color: (0,1,0,1)
+        Button:
+			size_hint_y: None
+			height: "30dp"
+			text: 'Cancel'
+			font_name: 'digital-7.regular.ttf'
+			color: (0,1,0,1)
+			font_size: '25dp'
+			background_normal: 'btnMenuNormal.png'
+			background_down: 'btnRadarFire.png'
+			on_press: root.newGame()
+
+<MultiPlayerGame>:
+	BoxLayout:
+		orientation: 'vertical'
+		canvas.before:
+			Color:
+				rgb: (1,1,1)
+			Rectangle:
+				size: self.size
+				pos: self.pos
+				source: 'Ocean.jpg'
+
+		Label:
+			size_hint_y: None
+			height: "40dp"
+			text: 'Battle Match LAN Game'
+			font_name: 'digital-7.regular.ttf'
+			color: (0,1,0,1)
+			font_size: '25dp'
+		BoxLayout:
+			orientation: 'horizontal'
+			padding: 5
+			size_hint_y: None
+			height: "40dp"
+			ToggleButton:
+				id: hostGame
+				text: 'Host a game'
+				font_name: 'digital-7.regular.ttf'
+				color: (0,1,0,1)
+				font_size: '25dp'
+				background_normal: 'btnMenuNormal.png'
+				background_down: 'btnRadarFire.png'
+				on_press: root.toggleFlopHost()				
+			ToggleButton:
+				id: joinGame
+				text: 'Join a game'
+				font_name: 'digital-7.regular.ttf'
+				color: (0,1,0,1)
+				font_size: '25dp'
+				background_normal: 'btnMenuNormal.png'
+				background_down: 'btnRadarFire.png'
+				font_size: '25dp'
+				on_press: root.toggleFlopJoin()
+		BoxLayout:
+			orientation: 'vertical'
+			padding: 5
+			size_hint_y: None
+			height: "40dp"
+			BoxLayout:
+				# Label:
+				# 	text: 'Host Address:'
+				# 	font_name: 'digital-7.regular.ttf'
+				# 	color: (0,1,0,1)
+				# 	font_size: '25dp'
+				# 	size_hint_x: .3
+				# TextInput:
+				# 	id: hostIP
+				# 	size_hint_y: None
+				# 	height: "35dp"
+				# 	text: '192.168.1.1'	
+				# 	font_name: 'digital-7.regular.ttf'
+				# 	color: (0,1,0,1)
+				# 	font_size: '25dp'
+				# 	size_hint_x: .2
+				# 	multiline: False
+				# 	write_tab: False
+				# Label:
+				# 	text: 'Port:'
+				# 	font_name: 'digital-7.regular.ttf'
+				# 	color: (0,1,0,1)
+				# 	font_size: '25dp'
+				# 	size_hint_x: .1
+				# TextInput:
+				# 	id: hostPort
+				# 	text: '6789'
+				# 	size_hint_y: None
+				# 	height: "35dp"	
+				# 	font_name: 'digital-7.regular.ttf'
+				# 	color: (0,1,0,1)
+				# 	font_size: '25dp'
+				# 	size_hint_x: .1
+				# 	multiline: False
+				# 	write_tab: False
+				Button:
+					id: gameStarter
+					size_hint_x: .3
+					size_hint_y: None
+					height: "35dp"
+					text: 'Select Option'
+					font_name: 'digital-7.regular.ttf'
+					color: (0,1,0,1)
+					font_size: '25dp'
+					background_normal: 'btnMenuNormal.png'
+					background_down: 'btnRadarFire.png'
+					on_press: root.createGame()
+		ProgressBar:
+			size_hint_y: None
+			height: "10dp"
+			id: scanTime
+			max: 10
+			value: 0
+		BoxLayout:
+			orientation: 'vertical'
+			Label:
+				id: hostConn
+				text: 'host info'
+				font_name: 'digital-7.regular.ttf'
+				color: (0,1,0,1)
+				font_size: '25dp'
+			Label:
+				id: p1Conn
+				text: 'Player 1 Info'
+				font_name: 'digital-7.regular.ttf'
+				color: (0,1,0,1)
+				font_size: '25dp'
+			Label:
+				id: p2Conn
+				text: 'Player 2 Info'
+				font_name: 'digital-7.regular.ttf'
+				color: (0,1,0,1)
+				font_size: '25dp'
+			Label:
+				id: errMsg
+				text: 'No Error Message'
+				font_name: 'digital-7.regular.ttf'
+				color: (0,1,0,1)
+				font_size: '25dp'
+		BoxLayout:
+			size_hint_y: None
+			height: "40dp"
+			Button:
+				size_hint_y: None
+				height: "40dp"
+				text: 'Cancel'
+				font_name: 'digital-7.regular.ttf'
+				color: (0,1,0,1)
+				font_size: '25dp'
+				background_normal: 'btnMenuNormal.png'
+				background_down: 'btnRadarFire.png'
+				on_press: root.gotoMenu()
+			Button:
+				size_hint_y: None
+				height: "40dp"
+				text: 'HELP'
+				font_name: 'digital-7.regular.ttf'
+				color: (0,1,0,1)
+				font_size: '25dp'
+				background_normal: 'btnMenuNormal.png'
+				background_down: 'btnRadarFire.png'
+				on_press: root.gotoHelp()
+
+
+
+
